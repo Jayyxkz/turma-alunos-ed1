@@ -1,4 +1,4 @@
-package com.ifgoiano;
+package com.ifgoiano.models;
 
 public class Aluno {
     private String matricula;

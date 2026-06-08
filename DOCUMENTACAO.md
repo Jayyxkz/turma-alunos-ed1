@@ -126,6 +126,9 @@ Insere um novo aluno na posição correta da lista, mantendo a ordem decrescente
 #### Regra de ordenação
 Notas maiores ficam mais próximas do início da lista.
 
+#### Observação sobre empates
+Quando duas notas são iguais, o novo nó é inserido após os nós que já possuem essa mesma nota.
+
 #### Exemplo
 Se os valores forem:
 
@@ -148,54 +151,48 @@ Remove o aluno cuja matrícula é igual ao valor informado.
 3. Atualiza `ultimo` caso o último elemento tenha sido removido.
 
 #### Caso a matrícula não exista
-O método não altera a lista e apenas encerra a execução.
+O método não altera a lista e retorna `null`.
 
 ---
 
 ### 7.3 `buscaPorNota(float nota)`
 
-Procura o primeiro aluno que possua a nota informada.
+Retorna uma nova lista contendo todos os alunos que possuem a nota informada.
 
 #### Como funciona
 1. Percorre todos os nós da lista.
 2. Compara o valor da nota de cada nó.
-3. Retorna o aluno assim que encontrar a correspondência.
+3. Adiciona os alunos encontrados em uma lista auxiliar.
+4. Retorna a lista auxiliar se houver resultados.
 
 #### Caso não encontre
 O método imprime:
 
 ```text
-Aluno não encontrado!
+Aluno(s) não encontrado(s).
 ```
 
 E retorna `null`.
 
 ---
 
-### 7.4 `buscaPorMatricula(Aluno aluno)`
+### 7.4 `buscaPorMatricula(String matricula)`
 
-Busca um aluno pela matrícula, recebendo um objeto `Aluno` como parâmetro.
+Busca um aluno pela matrícula, recebendo a matrícula como parâmetro.
 
 #### Como funciona
-1. Extrai a matrícula do objeto recebido.
-2. Percorre a lista.
-3. Compara a matrícula de cada nó.
-4. Retorna o aluno encontrado.
+1. Percorre a lista a partir do primeiro nó real.
+2. Compara a matrícula de cada nó com a matrícula informada.
+3. Retorna o aluno encontrado assim que houver correspondência.
 
 #### Caso não encontre
-O método imprime:
-
-```text
-Aluno não encontrado!
-```
-
-E retorna `null`.
+O método retorna `null`.
 
 ---
 
 ### 7.5 `buscaPorCidade(String cidade)`
 
-Retorna todos os alunos cuja cidade seja igual ao valor informado.
+Retorna uma nova lista com todos os alunos cuja cidade seja igual ao valor informado.
 
 #### Como funciona
 1. Percorre toda a lista.
@@ -204,13 +201,7 @@ Retorna todos os alunos cuja cidade seja igual ao valor informado.
 4. Retorna a lista com os resultados.
 
 #### Caso não encontre
-O método imprime:
-
-```text
-Aluno(s) não encontrado(s)!
-```
-
-E retorna `null`.
+O método retorna `null`.
 
 ---
 
@@ -244,7 +235,7 @@ Essa é a classe executável do projeto, contendo o método `main`.
 
 ## 9. Dados utilizados no teste
 
-No método `getListaNotas()`, são criados quatro alunos:
+No método `criarLista()`, são criados quatro alunos:
 
 ### 1. Jefferson
 - Matrícula: `15010`
@@ -265,7 +256,7 @@ No método `getListaNotas()`, são criados quatro alunos:
 - Curso: `Sistemas de Informação`
 - Cidade: `Orizona`
 - Telefone: `64994788`
-- Nota: `5.2`
+- Nota: `4.3`
 
 ### 4. João
 - Matrícula: `15013`
@@ -290,19 +281,19 @@ Como a inserção é ordenada por nota de forma decrescente, a lista final fica:
 ## 11. Passo a passo da execução
 
 ### Etapa 1: criação da lista
-A classe `TesteListaAluno` chama o método `getListaNotas()`.
+A classe `TesteListaAluno` chama o método `criarLista()`.
 
 ### Etapa 2: inserção dos alunos
 Os alunos são inseridos com suas notas, e a estrutura se organiza automaticamente.
 
-### Etapa 3: busca pelo menor desempenho
+### Etapa 3: busca por nota
 O programa executa:
 
 ```java
 lista.buscaPorNota(4.3f);
 ```
 
-O aluno encontrado é **João**.
+O resultado contém **Paulo** e **João**, pois ambos possuem nota `4.3`.
 
 ### Etapa 4: remoção por matrícula
 O programa remove o aluno de matrícula `15010`, que é **Jefferson**.
@@ -314,6 +305,7 @@ Depois da remoção, os alunos encontrados são:
 
 - Flávio
 - Paulo
+- João
 
 ### Etapa 6: exibição do tamanho
 Ao final, a lista contém **3 elementos**.
@@ -325,16 +317,77 @@ Ao final, a lista contém **3 elementos**.
 A execução produz uma saída semelhante à seguinte:
 
 ```text
-Alunos com menor desempenho:
-João
+=== INSERÇÃO ===
+Matrícula: 15011
+Nome: Flávio
+Curso: Sistemas de Informação
+Cidade: Orizona
+Telefone: 64998383
+Nota: 7.4
 
-Aluno Jefferson removido!
+Matrícula: 15010
+Nome: Jefferson
+Curso: Sistemas de Informação
+Cidade: Orizona
+Telefone: 64998888
+Nota: 6.7
 
-Alunos de Orizona:
-Flávio
-Paulo
+Matrícula: 15012
+Nome: Paulo
+Curso: Sistemas de Informação
+Cidade: Orizona
+Telefone: 64994788
+Nota: 4.3
 
-Tamanho da lista: 3
+Matrícula: 15013
+Nome: João
+Curso: Sistemas de Informação
+Cidade: Urutaí
+Telefone: 64994777
+Nota: 4.3
+
+=== REMOÇÃO POR MATRÍCULA ===
+Aluno Jefferson removido.
+
+=== BUSCA COM NOTA 4.3 ===
+Matrícula: 15012
+Nome: Paulo
+Curso: Sistemas de Informação
+Cidade: Orizona
+Telefone: 64994788
+Nota: 4.3
+
+Matrícula: 15013
+Nome: João
+Curso: Sistemas de Informação
+Cidade: Urutaí
+Telefone: 64994777
+Nota: 4.3
+
+=== BUSCA COM MATRÍCULA 15011===
+Matrícula: 15011
+Nome: Flávio
+Curso: Sistemas de Informação
+Cidade: Orizona
+Telefone: 64998383
+
+=== BUSCA DA CIDADE DE Orizona===
+Matrícula: 15011
+Nome: Flávio
+Curso: Sistemas de Informação
+Cidade: Orizona
+Telefone: 64998383
+Nota: 7.4
+
+Matrícula: 15012
+Nome: Paulo
+Curso: Sistemas de Informação
+Cidade: Orizona
+Telefone: 64994788
+Nota: 4.3
+
+=== TAMANHO DA LISTA ===
+Quantidade de alunos: 4
 ```
 
 ---
@@ -352,7 +405,7 @@ Tamanho da lista: 3
 
 - A busca é linear, então o custo cresce conforme o tamanho da lista;
 - A comparação de `float` com `==` pode ser sensível em situações reais;
-- O método `buscaPorMatricula` poderia receber apenas a matrícula, em vez de um objeto `Aluno`;
+- O método `buscaPorMatricula` já recebe apenas a matrícula, o que simplifica o uso;
 - Quando não encontra resultados, `buscaPorCidade` retorna `null`, o que exige tratamento no uso.
 
 ---

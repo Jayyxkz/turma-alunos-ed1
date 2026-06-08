@@ -70,21 +70,18 @@ public class ListaNotas {
             }
             aux = aux.prox;
         }
-        System.out.println("Aluno não encontrado!");
         return null;
     }
 
-    public Aluno buscaPorMatricula(Aluno aluno) {
+    public Aluno buscaPorMatricula(String matricula) {
         Nodo aux = this.head.prox;
-        String target = aluno.getMatricula();
 
         while (aux != null) {
-            if (aux.aluno.getMatricula().equals(target)) {
+            if (aux.aluno.getMatricula().equals(matricula)) {
                 return aux.aluno;
             }
             aux = aux.prox;
         }
-        System.out.println("Aluno não encontrado!");
         return null;
     }
 
@@ -100,7 +97,6 @@ public class ListaNotas {
         }
 
         if (lista.isEmpty()) {
-            System.out.println("Aluno(s) não encontrado(s)!");
             return null;
         }
         else {

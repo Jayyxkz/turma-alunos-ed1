@@ -61,16 +61,23 @@ public class ListaNotas {
         }
     }
 
-    public Aluno buscaPorNota(float nota) {
+    public List<Aluno> buscaPorNota(float nota) {
         Nodo aux = this.head.prox;
+        List<Aluno> lista = new ArrayList<>();
 
         while (aux != null) {
             if (aux.nota == nota) {
-                return aux.aluno;
+                lista.add(aux.aluno);
             }
             aux = aux.prox;
         }
-        return null;
+
+        if (lista.isEmpty()) {
+            return null;
+        }
+        else {
+            return lista;
+        }
     }
 
     public Aluno buscaPorMatricula(String matricula) {

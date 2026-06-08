@@ -29,12 +29,14 @@ public class TesteListaAluno {
     private static void testarBuscaPorNota(ListaNotas lista) {
         System.out.println("=== BUSCA POR NOTA ===");
 
-        Aluno aluno = lista.buscaPorNota(4.3f);
+        List<Aluno> alunos = lista.buscaPorNota(4.3f);
 
-        if (aluno != null) {
-            exibirAluno(aluno);
+        if (alunos != null) {
+            for (Aluno aluno : alunos) {
+                exibirAluno(aluno);
+            }
         } else {
-            System.out.println("Aluno não encontrado.");
+            System.out.println("Aluno(s) não encontrado(s).");
         }
     }
 
@@ -95,7 +97,7 @@ public class TesteListaAluno {
         lista.insercaoEmOrdem(
                 new Aluno("15012", "Paulo",
                         "Sistemas de Informação", "Orizona", "64994788"),
-                7.5f);
+                4.3f);
 
         lista.insercaoEmOrdem(
                 new Aluno("15013", "João",

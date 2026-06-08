@@ -11,11 +11,18 @@ public class TesteListaAluno {
 
         ListaNotas lista = criarLista();
 
+        testarInsercao(lista);
         testarRemocao(lista);
         testarBuscaPorNota(lista);
         testarBuscaPorMatricula(lista);
         testarBuscaPorCidade(lista);
         testarTamanho(lista);
+    }
+
+    private static void testarInsercao(ListaNotas lista) {
+        System.out.println("\n=== INSERÇÃO ===");
+
+        lista.print();
     }
 
     private static void testarRemocao(ListaNotas lista) {
@@ -29,12 +36,10 @@ public class TesteListaAluno {
     private static void testarBuscaPorNota(ListaNotas lista) {
         System.out.println("=== BUSCA POR NOTA ===");
 
-        List<Aluno> alunos = lista.buscaPorNota(4.3f);
+        ListaNotas alunos = lista.buscaPorNota(4.3f);
 
         if (alunos != null) {
-            for (Aluno aluno : alunos) {
-                exibirAluno(aluno);
-            }
+            alunos.print();
         } else {
             System.out.println("Aluno(s) não encontrado(s).");
         }
@@ -55,12 +60,10 @@ public class TesteListaAluno {
     private static void testarBuscaPorCidade(ListaNotas lista) {
         System.out.println("\n=== BUSCA POR CIDADE ===");
 
-        List<Aluno> alunos = lista.buscaPorCidade("Orizona");
+        ListaNotas alunos = lista.buscaPorCidade("Orizona");
 
         if (alunos != null) {
-            for (Aluno aluno : alunos) {
-                exibirAluno(aluno);
-            }
+            alunos.print();
         } else {
             System.out.println("Aluno(s) não encontrado(s).");
         }

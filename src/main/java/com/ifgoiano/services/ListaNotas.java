@@ -16,6 +16,16 @@ public class ListaNotas {
             this.aluno = aluno;
             this.nota = nota;
         }
+
+        private void exibirAluno() {
+            System.out.println("Matrícula: " + this.aluno.getMatricula());
+            System.out.println("Nome: " + this.aluno.getNome());
+            System.out.println("Curso: " + this.aluno.getCurso());
+            System.out.println("Cidade: " + this.aluno.getEndereco());
+            System.out.println("Telefone: " + this.aluno.getTelefone());
+            System.out.println("Nota: " + this.nota);
+            System.out.println();
+        }
     }
 
     private Nodo head;
@@ -43,6 +53,8 @@ public class ListaNotas {
     }
 
     public void remocaoPorMatricula(String matricula) {
+        if (vazia()) { return; }
+
         Nodo aux  = this.head;
 
         while (aux.prox != null && !aux.prox.aluno.getMatricula().equals(matricula)) {
@@ -61,18 +73,20 @@ public class ListaNotas {
         }
     }
 
-    public List<Aluno> buscaPorNota(float nota) {
+    public ListaNotas buscaPorNota(float nota) {
+        if (vazia()) { return null; }
+
         Nodo aux = this.head.prox;
-        List<Aluno> lista = new ArrayList<>();
+        ListaNotas lista = new ListaNotas();
 
         while (aux != null) {
             if (aux.nota == nota) {
-                lista.add(aux.aluno);
+                lista.insercaoEmOrdem(aux.aluno, nota);
             }
             aux = aux.prox;
         }
 
-        if (lista.isEmpty()) {
+        if (lista.head.prox == null ) {
             return null;
         }
         else {
@@ -81,6 +95,8 @@ public class ListaNotas {
     }
 
     public Aluno buscaPorMatricula(String matricula) {
+        if (vazia()) { return null; }
+
         Nodo aux = this.head.prox;
 
         while (aux != null) {
@@ -92,23 +108,43 @@ public class ListaNotas {
         return null;
     }
 
-    public List<Aluno> buscaPorCidade(String cidade) {
+    public ListaNotas buscaPorCidade(String cidade) {
+        if (vazia()) { return null; }
+
         Nodo aux = this.head.prox;
-        List<Aluno> lista = new ArrayList<>();
+        ListaNotas lista = new ListaNotas();
 
         while (aux != null) {
             if (aux.aluno.getEndereco().equals(cidade)) {
-                lista.add(aux.aluno);
+                lista.insercaoEmOrdem(aux.aluno, aux.nota);
             }
             aux = aux.prox;
         }
 
-        if (lista.isEmpty()) {
+        if (lista.head.prox == null ) {
             return null;
         }
         else {
             return lista;
         }
+    }
+
+    public void print() {
+        if (vazia()) { return; }
+
+        Nodo atual = this.head.prox;
+        while (atual != null) {
+            atual.exibirAluno();
+            atual = atual.prox;
+        }
+    }
+
+    private boolean vazia() {
+        if (this.head.prox == null) {
+            System.out.println("A lista está vazia.");
+            return true;
+        }
+        return false;
     }
 
     public int tamanho() {

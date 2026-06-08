@@ -2,9 +2,26 @@ package com.ifgoiano.services;
 
 import com.ifgoiano.models.Aluno;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * @author Flávio Diniz de Sousa
+ * @author Jefferson Pereira Marques
+ * @author Paulo montes Cardoso Xavier
+ * <p>
+ * Estrutura de Dados 1 - 27/05/2026
+ * <p>
+ * Está classe representa uma lista encadeada de alunos com suas respectivas notas,
+ * Os metodos por esta classe ofertados tem capacidade de:
+ *  Inserção em ordem pela nota, inserindo da maior nota para a menor;
+ *  Remoção dado a matrícula do aluno, atravez de duma busca sequencial;
+ *  Busca sublista de alunos com uma nota especifica, atravez de duma busca sequencial;
+ *  Busca dados de aluno por matrícula, atravez de duma busca sequencial;
+ *  Busca sublista de alunos de uma cidade especifica, atravez de duma busca sequencial;
+ *  Tamanho da lista;
+ * <p>
+ * Metodos Auxiliares:
+ *  print(): Auxilia na exibição da lista de alunos consuas notas;
+ *  isVasia(): Auxilia na validação de uma lista vasia;
+ */
 public class ListaNotas {
 
     private static class Nodo {
@@ -28,7 +45,7 @@ public class ListaNotas {
         }
     }
 
-    private Nodo head;
+    private final Nodo head;
     private Nodo ultimo;
 
     public ListaNotas() {
@@ -52,8 +69,8 @@ public class ListaNotas {
         }
     }
 
-    public void remocaoPorMatricula(String matricula) {
-        if (vazia()) { return; }
+    public Aluno remocaoPorMatricula(String matricula) {
+        if (isVazia()) { return null; }
 
         Nodo aux  = this.head;
 
@@ -62,7 +79,7 @@ public class ListaNotas {
         }
 
         if (aux.prox == null) {
-            return;
+            return null;
         }
 
         Nodo q = aux.prox;
@@ -71,10 +88,12 @@ public class ListaNotas {
         if (aux.prox == null) {
             this.ultimo = aux;
         }
+
+        return q.aluno;
     }
 
     public ListaNotas buscaPorNota(float nota) {
-        if (vazia()) { return null; }
+        if (isVazia()) { return null; }
 
         Nodo aux = this.head.prox;
         ListaNotas lista = new ListaNotas();
@@ -95,7 +114,7 @@ public class ListaNotas {
     }
 
     public Aluno buscaPorMatricula(String matricula) {
-        if (vazia()) { return null; }
+        if (isVazia()) { return null; }
 
         Nodo aux = this.head.prox;
 
@@ -109,7 +128,7 @@ public class ListaNotas {
     }
 
     public ListaNotas buscaPorCidade(String cidade) {
-        if (vazia()) { return null; }
+        if (isVazia()) { return null; }
 
         Nodo aux = this.head.prox;
         ListaNotas lista = new ListaNotas();
@@ -130,7 +149,7 @@ public class ListaNotas {
     }
 
     public void print() {
-        if (vazia()) { return; }
+        if (isVazia()) { return; }
 
         Nodo atual = this.head.prox;
         while (atual != null) {
@@ -139,7 +158,7 @@ public class ListaNotas {
         }
     }
 
-    private boolean vazia() {
+    private boolean isVazia() {
         if (this.head.prox == null) {
             System.out.println("A lista está vazia.");
             return true;

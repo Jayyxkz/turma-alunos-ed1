@@ -5,6 +5,26 @@ import com.ifgoiano.services.ListaNotas;
 
 import java.util.List;
 
+/**
+ * @author Flávio Diniz de Sousa
+ * @author Jefferson Pereira Marques
+ * @author Paulo montes Cardoso Xavier
+ * <p>
+ * Estrutura de Dados 1 - 27/05/2026
+ * <p>
+ * Está classe realiza os testes dos metodos da classe ListaNotas,
+ * Os metodos por esta classe ofertados tem capacidade de:
+ *  Testar a inserção em ordem e exibição da lista;
+ *  Testar a remoção de um aluno por matrícula;
+ *  Testar a busca de alunos por nota;
+ *  Testar a busca de aluno por matrícula;
+ *  Testar a busca de alunos por cidade;
+ *  Testar o tamanho da lista;
+ * <p>
+ * Metodos Auxiliares:
+ *  criarLista(): Auxilia na criação e populamento da lista de alunos para os testes;
+ *  exibirAluno(): Auxilia na exibição dos dados de um aluno;
+ */
 public class TesteListaAluno {
 
     public static void main(String[] args) {
@@ -12,7 +32,9 @@ public class TesteListaAluno {
         ListaNotas lista = criarLista();
 
         testarInsercao(lista);
+        testarTamanho(lista);
         testarRemocao(lista);
+        testarTamanho(lista);
         testarBuscaPorNota(lista);
         testarBuscaPorMatricula(lista);
         testarBuscaPorCidade(lista);
@@ -28,13 +50,13 @@ public class TesteListaAluno {
     private static void testarRemocao(ListaNotas lista) {
         System.out.println("\n=== REMOÇÃO POR MATRÍCULA ===");
 
-        lista.remocaoPorMatricula("15010");
+        Aluno aluno = lista.remocaoPorMatricula("15010");
 
-        System.out.println("Aluno Jefferson removido.\n");
+        System.out.println("Aluno "+ aluno.getNome() +" removido.");
     }
 
     private static void testarBuscaPorNota(ListaNotas lista) {
-        System.out.println("=== BUSCA POR NOTA ===");
+        System.out.println("\n=== BUSCA COM NOTA 4.3 ===");
 
         ListaNotas alunos = lista.buscaPorNota(4.3f);
 
@@ -46,7 +68,7 @@ public class TesteListaAluno {
     }
 
     private static void testarBuscaPorMatricula(ListaNotas lista) {
-        System.out.println("\n=== BUSCA POR MATRÍCULA ===");
+        System.out.println("\n=== BUSCA COM MATRÍCULA 15011===");
 
         Aluno aluno = lista.buscaPorMatricula("15011");
 
@@ -58,7 +80,7 @@ public class TesteListaAluno {
     }
 
     private static void testarBuscaPorCidade(ListaNotas lista) {
-        System.out.println("\n=== BUSCA POR CIDADE ===");
+        System.out.println("\n=== BUSCA DA CIDADE DE Orizona===");
 
         ListaNotas alunos = lista.buscaPorCidade("Orizona");
 

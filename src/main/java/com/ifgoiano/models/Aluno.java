@@ -1,5 +1,20 @@
 package com.ifgoiano.models;
 
+/**
+ * @author Flávio Diniz de Sousa
+ * @author Jefferson Pereira Marques
+ * @author Paulo montes Cardoso Xavier
+ * <p>
+ * Estrutura de Dados 1 - 27/05/2026
+ * <p>
+ * Está classe representa o modelo de um aluno,
+ * Os atributos por esta classe definidos são:
+ *  matricula: Número de matrícula do aluno;
+ *  nome: Nome completo do aluno;
+ *  curso: Curso em que o aluno está matriculado;
+ *  endereco: Cidade de residência do aluno;
+ *  telefone: Número de telefone do aluno;
+ */
 public class Aluno {
     private String matricula;
     private String nome;

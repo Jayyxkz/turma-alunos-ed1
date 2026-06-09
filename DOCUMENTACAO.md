@@ -433,14 +433,3 @@ Além de servir como exercício acadêmico, a implementação também mostra com
 - `src/main/java/com/ifgoiano/TesteListaAluno.java`
 
 ---
-
-## 16. Observação final
-
-Se desejar, esta documentação pode ser expandida com:
-
-- capa de trabalho acadêmico;
-- objetivos geral e específicos;
-- diagrama da estrutura da lista;
-- fluxograma das operações;
-- melhoria da formatação para entrega formal.
-

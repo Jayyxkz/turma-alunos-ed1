@@ -273,7 +273,7 @@ Como a inserção é ordenada por nota de forma decrescente, a lista final fica:
 
 1. Flávio — `7.4`
 2. Jefferson — `6.7`
-3. Paulo — `5.2`
+3. Paulo — `4.3`
 4. João — `4.3`
 
 ---
